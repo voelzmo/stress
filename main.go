@@ -3,7 +3,6 @@ package main
 import (
 	"flag"
 	"io"
-	"io/ioutil"
 	"os"
 	"time"
 
@@ -38,7 +37,7 @@ func burnCPU() {
 	for i := 0; i < *argCpus; i++ {
 		glog.Infof("Spawning a thread to consume CPU")
 		go func() {
-			_, err := io.Copy(ioutil.Discard, src)
+			_, err := io.Copy(io.Discard, src)
 			if err != nil {
 				glog.Fatalf("failed to copy from /dev/zero to /dev/null: %v", err)
 			}
